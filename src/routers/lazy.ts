@@ -7,7 +7,7 @@ export const PageRegister = lazy(() => import("@/pages/register"));
 // page
 export const PageHome = lazy(() => import("@/pages/home"));
 export const PageManagerBook = lazy(() => import("@/pages/manager_book"));
-export const PageOrder = lazy(() => import("@/pages/manager_user"));
+export const PageOrder = lazy(() => import("@/pages/order"));
 export const PageReview = lazy(() => import("@/pages/review"));
 
 export const PageManagerPermisson = lazy(() => import("@/pages/manager_permission"));

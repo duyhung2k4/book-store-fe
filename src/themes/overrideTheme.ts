@@ -10,7 +10,7 @@ const themeOverride = createTheme({
                 input: {
                     borderRadius: 16,
                     border: 0,
-                    backgroundColor: "#efefef"
+                    backgroundColor: "#F7EFE5"
                 } as CSSProperties
             }
         },

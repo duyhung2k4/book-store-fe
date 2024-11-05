@@ -3,16 +3,22 @@
 .link {
     transition: 200ms;
     cursor: pointer;
+    color: #765C53;
 }
 
 .link_root:hover .link {
     transition: 200ms;
-    background-color: #177AE3;
+    background-color: #765C53;
     color: #FFF;
 }
 
 .active {
     transition: 200ms;
     color: #FFF;
-    background-color: #177AE3;
+    background-color: #765C53;
+}
+
+.title {
+    font-size: 24px;
+    font-weight: 600;
 }

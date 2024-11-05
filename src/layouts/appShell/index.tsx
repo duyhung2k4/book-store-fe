@@ -1,12 +1,14 @@
 import React, { Suspense, useMemo } from "react";
 import Cookies from "js-cookie";
+import Mess from "@/components/mess";
 
 import { useNavigate, useOutlet } from "react-router";
-import { AppShell, Group, LoadingOverlay, Stack } from '@mantine/core';
+import { AppShell, Button, Grid, Group, LoadingOverlay, Stack, Text, TextInput } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import { ObjectRouter, ROUTER } from "@/constants/router";
 import { useAppSelector } from "@/redux/hook";
 import { TOKEN_TYPE } from "@/model/variable";
+import { IconBrandTelegram } from "@tabler/icons-react";
 
 import classes from "./styles.module.css";
 
@@ -27,11 +29,7 @@ const AppshellLayout: React.FC = () => {
         let list: ObjectRouter[] = [
             ROUTER.HOME,
             ROUTER.ORDER,
-            ROUTER.REVIEW,
-            ROUTER.MANAGER_BOOK,
             ROUTER.MANAGER_ORDER,
-            ROUTER.MANAGER_CATEGORY,
-            ROUTER.MANAGER_PUBLISHER,
             ROUTER.MANAGER_PERMISSION,
             ROUTER.MANAGER_USER,
         ];
@@ -116,7 +114,7 @@ const AppshellLayout: React.FC = () => {
                     </Group>
                 </AppShell.Header> */}
 
-                <AppShell.Navbar p={0}>
+                <AppShell.Navbar p={0} style={{ backgroundColor: "#EEE5DA" }}>
                     <Stack gap={8} pt={30}>
                         {links.map((l, index) => {
                             const active = pathname === ROUTER.HOME.href && l.href === ROUTER.HOME.href ? true : pathname.includes(l.href) && l.href !== ROUTER.HOME.href;
@@ -166,11 +164,48 @@ const AppshellLayout: React.FC = () => {
                             justifyContent: "start",
                             alignItems: "start",
                             padding: 16,
-                            backgroundColor: "#E8F2FC",
+                            backgroundColor: "#FBF8F5",
                             overflowY: "scroll"
                         }}
                     >
-                        {outlet}
+                        <Grid w={"100%"}>
+                            <Grid.Col span={8}>
+                                {outlet}
+                            </Grid.Col>
+                            <Grid.Col span={4}>
+                                <Stack
+                                    style={{
+                                        height: `calc(100vh - ${16 * 2}px)`,
+                                        borderRadius: 16,
+                                        backgroundColor: "#E2D6C9",
+                                        padding: 16,
+                                    }}
+                                >
+                                    <Text className={classes.title}>Chat</Text>
+                                    <Stack
+                                        style={{
+                                            flex: 1,
+                                            display: "flex",
+                                            flexDirection: "column",
+                                            justifyContent: "end"
+                                        }}
+                                    >
+                                        <Mess content="Hello" me={false} />
+                                    </Stack>
+                                    <Group>
+                                        <TextInput
+                                            placeholder="Nhập tin nhắn"
+                                            style={{
+                                                flex: 1
+                                            }}
+                                        />
+                                        <Button style={{ backgroundColor: "#ED5E64" }}>
+                                            <IconBrandTelegram />
+                                        </Button>
+                                    </Group>
+                                </Stack>
+                            </Grid.Col>
+                        </Grid>
                     </Group>
                 </AppShell.Main>
             </AppShell>
