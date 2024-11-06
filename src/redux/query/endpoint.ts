@@ -39,8 +39,8 @@ export const HEADER = {
 
 export const endPoint = {
     auth: {
-        loginGoogle: () => ({
-            url: "public/login",
+        login: () => ({
+            url: "auth/login",
             method: "POST",
             headers: HEADER.defaultHeader(),
         }),

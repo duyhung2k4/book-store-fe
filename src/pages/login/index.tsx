@@ -35,8 +35,10 @@ const Login: React.FC = () => {
     const handleSubmit = async (values: LoginRequest) => {
         const result = await login(values);
 
+        console.log(result);
+
         if("error" in result) return;
-        navigation(ROUTER.HOME.href);
+        
     }
 
 

@@ -1,9 +1,8 @@
-import { ProfileModel } from "@/model/profile"
+import { UserModelV2 } from "@/model_v2/user"
 
 export type AuthResponse = {
-  accessToken: string
-  refreshToken: string
-  profile: ProfileModel
+    access_token: string
+    user: UserModelV2
 }
 
 export type RegisterResponse = string

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import AppshellLayout from "@/layouts/appShell";
 import ProtectedLayout from "@/layouts/protected";
 
@@ -23,23 +23,13 @@ import {
 } from "./lazy";
 import { ROUTER } from "@/constants/router";
 import { useAppSelector } from "@/redux/hook";
-import { useRefreshTokenMutation } from "@/redux/api/auth";
-import { LoadingOverlay } from "@mantine/core";
 
 
 
 const AppRouter: React.FC = () => {
     const role = useAppSelector(state => state.authSlice.role);
 
-    const [refresh, { isLoading }] = useRefreshTokenMutation();
-    
-    useEffect(() => {
-        refresh(null);
-    }, []);
 
-    if(isLoading) {
-        return <LoadingOverlay visible overlayProps={{ radius: "sm", blur: 2 }} />
-    }
 
     return (
         <Routes>

@@ -6,3 +6,8 @@ export enum TOKEN_TYPE {
 }
 
 export const ROLE_APP = "user"
+
+export const LOCAL = {
+    USER: "user",
+    ROLE: "role"
+}
