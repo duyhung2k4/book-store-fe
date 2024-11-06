@@ -1,6 +1,7 @@
 import { 
     Icon, 
     IconAlignBoxRightMiddle, 
+    IconBaselineDensityMedium, 
     IconBook, 
     IconBook2, 
     IconFolders, 
@@ -8,6 +9,7 @@ import {
     IconLayoutDashboard, 
     IconMessage, 
     IconProps,
+    IconShoppingCart,
     IconTruckDelivery,
     IconUserPlus,
 } from "@tabler/icons-react"
@@ -22,8 +24,11 @@ export type ObjectRouter = {
 export type FieldRouter =
     | "HOME"
     | "LOGIN"
+    | "CATEGORY_BOOK"
+    | "BOOK"
     | "REGSITER"
     | "ORDER"
+    | "CART"
     | "REVIEW"
     | "MANAGER_BOOK"
     | "MANAGER_ORDER"
@@ -47,6 +52,22 @@ export const ROUTER: Record<FieldRouter, ObjectRouter> = {
         type: "protected",
         name: "Trang chủ",
         icon: IconLayoutDashboard
+    },
+    CART: {
+        href: "/cart",
+        type: "protected",
+        name: "Giỏ hàng",
+        icon: IconShoppingCart
+    },
+    BOOK: {
+        href: "/book",
+        type: "protected",
+    },
+    CATEGORY_BOOK: {
+        href: "/category",
+        type: "protected",
+        name: "Thể loại",
+        icon: IconBaselineDensityMedium
     },
     ORDER: {
         href: "/order",

@@ -4,6 +4,10 @@ import ProtectedLayout from "@/layouts/protected";
 
 import { Routes, Route } from "react-router-dom";
 import {
+    PageCart,
+    PageCategory,
+    PageCategoryBook,
+    PageDetailBook,
     PageHome,
     PageLogin,
     PageManagerBook,
@@ -47,6 +51,10 @@ const AppRouter: React.FC = () => {
                     <Route path={ROUTER.HOME.href} element={<PageHome />} />
                     <Route path={ROUTER.ORDER.href} element={<PageOrder />} />
                     <Route path={ROUTER.REVIEW.href} element={<PageReview />} />
+                    <Route path={ROUTER.CATEGORY_BOOK.href} element={<PageCategory />} />
+                    <Route path={`${ROUTER.CATEGORY_BOOK.href}/:category`} element={<PageCategoryBook />} />
+                    <Route path={`${ROUTER.BOOK.href}/:id`} element={<PageDetailBook />} />
+                    <Route path={ROUTER.CART.href} element={<PageCart />} />
 
                     <Route path={ROUTER.MANAGER_BOOK.href} element={<PageManagerBook />} />
                     <Route path={ROUTER.MANAGER_PERMISSION.href} element={<PageManagerPermisson />} />

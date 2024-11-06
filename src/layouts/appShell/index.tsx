@@ -28,10 +28,11 @@ const AppshellLayout: React.FC = () => {
     const links: ObjectRouter[] = useMemo(() => {
         let list: ObjectRouter[] = [
             ROUTER.HOME,
+            ROUTER.CATEGORY_BOOK,
+            ROUTER.CART,
             ROUTER.ORDER,
             ROUTER.MANAGER_ORDER,
             ROUTER.MANAGER_PERMISSION,
-            ROUTER.MANAGER_USER,
         ];
 
         // if (role === "admin") {
@@ -154,6 +155,7 @@ const AppshellLayout: React.FC = () => {
                         })}
                     </Stack>
                 </AppShell.Navbar>
+
                 <AppShell.Main
                     pb={0}
                 >
@@ -170,7 +172,17 @@ const AppshellLayout: React.FC = () => {
                     >
                         <Grid w={"100%"}>
                             <Grid.Col span={8}>
-                                {outlet}
+                                <Stack 
+                                    style={{
+                                        height: `calc(100vh - ${16*2}px)`,
+                                        overflow: "hidden",
+                                        overflowY: "scroll",
+                                        paddingLeft: 8,
+                                        paddingRight: 8,
+                                    }}
+                                >
+                                    {outlet}
+                                </Stack>
                             </Grid.Col>
                             <Grid.Col span={4}>
                                 <Stack

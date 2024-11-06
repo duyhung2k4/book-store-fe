@@ -26,6 +26,9 @@ export type TableCRUDProps = {
     omit?: Record<string, string[]>
     isOption?: boolean
     isAction?: boolean
+    toolbars?: {
+        add?: boolean
+    }
     options?: ((values: Record<string, any>) => React.ReactNode)[]
     defaultAction?: boolean
 }
@@ -242,20 +245,21 @@ const TableCRUD = forwardRef<any, TableCRUDProps>((props, ref) => {
                 data={datas}
                 hide={props.hide}
                 loading={isLoading || props.isLoading}
-                maxHeight={`calc(100vh - ${SIZE.h_header} - ${SIZE.t_toolbar} - ${SIZE.t_header} - ${SIZE.t_footer})`}
+                maxHeight={`calc(100vh + 19px - ${SIZE.t_toolbar} - ${SIZE.t_header} - ${SIZE.t_footer})`}
                 action={
                     props.isAction !== false ?
                         <Group>
-                            <Button
-                                onClick={() => OpenModalAction({
-                                    title: "Thêm mới",
-                                    fields,
-                                    idForm: "create-department",
-                                    cb: handleCreate,
-                                })}
-                                leftSection={<IconPlus />}
-                                color="green"
-                            >Thêm</Button>
+                            {props?.toolbars?.add === false ? <></> :
+                                <Button
+                                    onClick={() => OpenModalAction({
+                                        title: "Thêm mới",
+                                        fields,
+                                        idForm: "create-department",
+                                        cb: handleCreate,
+                                    })}
+                                    leftSection={<IconPlus />}
+                                    color="green"
+                                >Thêm</Button>}
                             <Button
                                 onClick={handleGet}
                                 leftSection={<IconReload />}
