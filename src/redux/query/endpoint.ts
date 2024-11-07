@@ -25,7 +25,7 @@ export const HEADER = {
         const token = Cookies.get(TOKEN_TYPE.PROFILE_UUID_PENDING);
         return {
             accept: 'application/json',
-            Authorization: `Bearer ${token}`,
+            Authorization: `${token}`,
         }
     },
     createSocket: () => {
@@ -44,41 +44,16 @@ export const endPoint = {
             method: "POST",
             headers: HEADER.defaultHeader(),
         }),
-        refreshToken: () => ({
-            url: "protected/refresh-token",
-            method: "POST",
-            headers: HEADER.refreshTokenHeader(),
-        }),
         register: () => ({
             url: "auth/register",
             method: "POST",
             headers: HEADER.defaultHeader(),
         }),
-        sendFileAuth: () => ({
-            url: "auth/send-file-auth",
-            method: "POST",
-            headers: HEADER.authHeader(),
-        }),
-        createSocketAuthFace: () => ({
-            url: "auth/create-socket-auth-face",
-            method: "POST",
-            headers: HEADER.authHeader(),
-        }),
-        faceLogin: () => ({
-            url: "auth/auth-face",
-            method: "POST",
-            headers: HEADER.createSocket(),
-        }),
-        acceptCode: () => ({
-            url: "auth/accept-code",
-            method: "POST",
-            headers: HEADER.authHeader(),
-        }),
-        saveProcess: () => ({
-            url: "auth/save-process",
-            method: "POST",
-            headers: HEADER.authHeader(),
-        }),
+        getUserById: () => ({
+            url: "auth/get_user_by_id",
+            method: "GET",
+            headers: HEADER.defaultHeader(),
+        })
     },
     query: {
         query: (model: string) => ({
@@ -87,43 +62,47 @@ export const endPoint = {
             headers: HEADER.protectedHeader(),
         }),
     },
-    schedule: {
-        callMedicalFile: () => ({
-            url: "protected/schedule/call-medical-file",
+    category: {
+        getAll: () => ({
+            url: "book/category",
             method: "GET",
-            headers: HEADER.protectedHeader(),
+            headers: HEADER.defaultHeader(),
+        })
+    },
+    book: {
+        getByCategory: () => ({
+            url: "book/get_books_by_category_id",
+            method: "GET",
+            headers: HEADER.defaultHeader(),
         }),
-        pullMedicalFile: () => ({
-            url: "protected/schedule/pull-medical-file",
+        getById: () => ({
+            url: "book/get_book_by_id",
+            method: "GET",
+            headers: HEADER.defaultHeader(),
+        })
+    },
+    review: {
+        getReview: () => ({
+            url: "review/get_reviews_by_books",
+            method: "GET",
+            headers: HEADER.defaultHeader(),
+        }),
+        createReview: () => ({
+            url: "review/create_review",
             method: "POST",
             headers: HEADER.protectedHeader(),
         }),
-        transit: () => ({
-            url: "protected/schedule/transit",
+        delete: () => ({
+            url: "review/delete_review",
+            method: "DELETE",
+            headers: HEADER.protectedHeader(),
+        }),
+    },
+    order: {
+        createOrder: () => ({
+            url: "order/create_orders",
             method: "POST",
             headers: HEADER.protectedHeader(),
         })
-    },
-    room: {
-        addAccount: () => ({
-            url: "protected/room/add-account",
-            method: "POST",
-            headers: HEADER.protectedHeader(),
-        }),
-        callStep: () => ({
-            url: "protected/room/call-step",
-            method: "GET",
-            headers: HEADER.protectedHeader(),
-        }),
-        pullStep: () => ({
-            url: "protected/room/pull-step",
-            method: "POST",
-            headers: HEADER.protectedHeader(),
-        }),
-        saveStep: () => ({
-            url: "protected/room/save-step",
-            method: "POST",
-            headers: HEADER.protectedHeader(),
-        }),
     }
 }

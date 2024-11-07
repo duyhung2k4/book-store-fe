@@ -42,7 +42,7 @@ const AppRouter: React.FC = () => {
                     <Route path={ROUTER.ORDER.href} element={<PageOrder />} />
                     <Route path={ROUTER.REVIEW.href} element={<PageReview />} />
                     <Route path={ROUTER.CATEGORY_BOOK.href} element={<PageCategory />} />
-                    <Route path={`${ROUTER.CATEGORY_BOOK.href}/:category`} element={<PageCategoryBook />} />
+                    <Route path={`${ROUTER.CATEGORY_BOOK.href}/:category/:id`} element={<PageCategoryBook />} />
                     <Route path={`${ROUTER.BOOK.href}/:id`} element={<PageDetailBook />} />
                     <Route path={ROUTER.CART.href} element={<PageCart />} />
 

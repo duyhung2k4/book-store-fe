@@ -44,7 +44,7 @@ const Regsiter: React.FC = () => {
         const result = await login(values);
 
         if ("error" in result) return;
-        // navigation(ROUTER.HOME.href);
+        navigation(ROUTER.LOGIN.href);
     }
 
 

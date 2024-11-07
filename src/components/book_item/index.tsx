@@ -7,25 +7,28 @@ import classes from "./styles.module.css";
 
 
 export type BookItemProps = {
-
+    title: string
+    price: number
+    image_url: string
+    onClick?: () => void
 }
 
-const BookItem: React.FC = () => {
+const BookItem: React.FC<BookItemProps> = (props) => {
     return (
         <>
             <Stack className={classes.root}>
                 <Stack w={"100%"}>
                     <Image
-                        src={"https://cdn.dribbble.com/userupload/3634609/file/original-d79062a7d984df9d3328911cdecdc103.png?resize=1905x1429"}
+                        src={props.image_url}
                         style={{
                             aspectRatio: 1 / 1
                         }}
                     />
                     <Text className={classes.text}>
-                        hello
+                        {props.title}
                     </Text>
-                    <Button variant="outline">100.000 VND</Button>
-                    <Button>Chi tiết</Button>
+                    <Button variant="outline">{props.price} VND</Button>
+                    <Button onClick={props.onClick}>Chi tiết</Button>
                 </Stack>
             </Stack>
         </>

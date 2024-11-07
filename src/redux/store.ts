@@ -1,17 +1,21 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { rootReducer } from "./reducer";
 import { queryApi } from "./api/query";
-import { scheduleApi } from "./api/schedule";
-import { roomApi } from "./api/room";
 import { authApi } from "./api/auth";
+import { categoryApi } from "./api/category";
+import { bookApi } from "./api/book";
+import { reviewApi } from "./api/review";
+import { orderApi } from "./api/order";
 
 
 
 const middleware = [
     authApi.middleware,
     queryApi.middleware,
-    scheduleApi.middleware,
-    roomApi.middleware,
+    categoryApi.middleware,
+    bookApi.middleware,
+    reviewApi.middleware,
+    orderApi.middleware,
 ]
 
 const store = configureStore({

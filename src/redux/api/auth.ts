@@ -4,6 +4,7 @@ import { endPoint } from "../query/endpoint";
 import { QueryReturnType } from "@/dto/base";
 import { AuthResponse, RegisterResponse } from "@/dto/response/auth";
 import { LoginRequest, RegisterRequest } from "@/dto/request/auth";
+import { UserModelV2 } from "@/model_v2/user";
 
 export const authApi = createApi({
     reducerPath: "authApi",
@@ -15,10 +16,12 @@ export const authApi = createApi({
                 data: payload,
             }),
         }),
-        refreshToken: builder.mutation<QueryReturnType<AuthResponse>, null>({
+        getUserById: builder.query<UserModelV2, number>({
             query: (payload) => ({
-                ...endPoint.auth.refreshToken(),
-                data: payload,
+                ...endPoint.auth.getUserById(),
+                params: {
+                    id: payload
+                }
             }),
         }),
 
@@ -32,7 +35,7 @@ export const authApi = createApi({
 });
 
 export const {
+    useGetUserByIdQuery,
     useLoginMutation,
-    useRefreshTokenMutation,
     useRegisterMutation,
 } = authApi;

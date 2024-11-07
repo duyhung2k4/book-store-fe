@@ -1,16 +1,15 @@
 import React, { Suspense, useMemo } from "react";
 import Cookies from "js-cookie";
-import Mess from "@/components/mess";
 
 import { useNavigate, useOutlet } from "react-router";
-import { AppShell, Button, Grid, Group, LoadingOverlay, Stack, Text, TextInput } from '@mantine/core';
+import { AppShell, Grid, Group, LoadingOverlay, Stack } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import { ObjectRouter, ROUTER } from "@/constants/router";
 import { useAppSelector } from "@/redux/hook";
 import { TOKEN_TYPE } from "@/model/variable";
-import { IconBrandTelegram } from "@tabler/icons-react";
 
 import classes from "./styles.module.css";
+import RoomChat from "@/components/room_chat";
 
 
 
@@ -185,37 +184,7 @@ const AppshellLayout: React.FC = () => {
                                 </Stack>
                             </Grid.Col>
                             <Grid.Col span={4}>
-                                <Stack
-                                    style={{
-                                        height: `calc(100vh - ${16 * 2}px)`,
-                                        borderRadius: 16,
-                                        backgroundColor: "#E2D6C9",
-                                        padding: 16,
-                                    }}
-                                >
-                                    <Text className={classes.title}>Chat</Text>
-                                    <Stack
-                                        style={{
-                                            flex: 1,
-                                            display: "flex",
-                                            flexDirection: "column",
-                                            justifyContent: "end"
-                                        }}
-                                    >
-                                        <Mess content="Hello" me={false} />
-                                    </Stack>
-                                    <Group>
-                                        <TextInput
-                                            placeholder="Nhập tin nhắn"
-                                            style={{
-                                                flex: 1
-                                            }}
-                                        />
-                                        <Button style={{ backgroundColor: "#ED5E64" }}>
-                                            <IconBrandTelegram />
-                                        </Button>
-                                    </Group>
-                                </Stack>
+                                <RoomChat/>
                             </Grid.Col>
                         </Grid>
                     </Group>

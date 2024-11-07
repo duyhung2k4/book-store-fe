@@ -6,6 +6,7 @@ export enum TOKEN_TYPE {
 }
 
 export const ROLE_APP = "user"
+export const CART = "cart"
 
 export const LOCAL = {
     USER: "user",
