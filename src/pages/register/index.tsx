@@ -1,7 +1,7 @@
 import React, { useEffect, useMemo } from "react";
 import Cookies from "js-cookie";
 
-import { Button, Grid, Group, Image, PasswordInput, Stack, Text, TextInput } from "@mantine/core";
+import { Button, Grid, Group, PasswordInput, Stack, Text, TextInput } from "@mantine/core";
 import { TOKEN_TYPE } from "@/model/variable";
 import { useNavigate } from "react-router";
 import { ROUTER } from "@/constants/router";
@@ -69,8 +69,15 @@ const Regsiter: React.FC = () => {
                 }}
             >
                 <Grid.Col span={7} w={"100%"}>
-                    <Stack className={classes.bg}>
-                        <Image className={classes.bg_image} src={bgGIF} />
+                    <Stack
+                        className={classes.bg}
+                        style={{
+                            backgroundImage: `url("${bgGIF}")`,
+                            backgroundRepeat: "no-repeat",
+                            backgroundSize: "cover",
+                            objectFit: "fill"
+                        }}
+                    >
                     </Stack>
                 </Grid.Col>
 
@@ -128,8 +135,8 @@ const Regsiter: React.FC = () => {
                             form="login"
                         >Đăng kí</Button>
                         <Text w={"100%"} style={{ textAlign: "left" }}>
-                            Bạn đã có tài khoản?&nbsp; 
-                            <span 
+                            Bạn đã có tài khoản?&nbsp;
+                            <span
                                 className={classes.high_light}
                                 onClick={() => navigation(ROUTER.LOGIN.href)}
                             >Đăng nhập</span>
