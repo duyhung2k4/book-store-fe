@@ -4,9 +4,9 @@ import OrderItem from "@/components/order_item";
 import { rem, Stack, Tabs, Text } from "@mantine/core";
 import { IconMessageCircle, IconPhoto, IconSettings } from "@tabler/icons-react";
 import { useGetOrderByUserIdQuery } from "@/redux/api/order";
+import { OrderModelV2 } from "@/model_v2/order";
 
 import classes from "./styles.module.css";
-import { OrderModelV2 } from "@/model_v2/order";
 
 
 

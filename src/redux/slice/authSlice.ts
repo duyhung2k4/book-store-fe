@@ -7,7 +7,7 @@ import { UserModelV2 } from "@/model_v2/user";
 
 interface AuthState {
     profile?: UserModelV2
-    role: "admin" | "user" | ""
+    role: string
 }
 
 const initialState: AuthState = {
@@ -26,15 +26,10 @@ const authSlice = createSlice({
     extraReducers: (builder) => {
         builder.addMatcher(authApi.endpoints.login.matchFulfilled, (state, { payload }) => {
             state.profile = payload?.user || {};
-            
-            if (payload?.user.role_id === 2) {
-                state.role = "admin"
-            } else {
-                state.role = "user"
-            }
+            state.role = payload.user.role_name;
             
             localStorage.setItem(LOCAL.USER, JSON.stringify(state.profile));
-            localStorage.setItem(LOCAL.ROLE, state.role);
+            localStorage.setItem(LOCAL.ROLE, payload.user.role_name);
 
 
             if (payload?.access_token) {

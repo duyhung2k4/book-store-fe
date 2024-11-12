@@ -1,7 +1,7 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import BookItem from "@/components/book_item";
 
-import { Button, Grid, Group, Stack, Text, TextInput, Tooltip } from "@mantine/core";
+import { Grid, Group, Stack, Text, TextInput, Tooltip } from "@mantine/core";
 import { IconArrowLeft } from "@tabler/icons-react";
 import { useNavigate, useParams } from "react-router";
 import { ROUTER } from "@/constants/router";
@@ -12,6 +12,7 @@ import classes from "./styles.module.css";
 
 
 const CategoryBook: React.FC = () => {
+    const [search, setSearch] = useState<string>("");
     const { category, id } = useParams();
     const navigation = useNavigate();
 
@@ -19,6 +20,11 @@ const CategoryBook: React.FC = () => {
         data,
         refetch,
     } = useGetBookByCategoryQuery(Number(id || 0));
+
+    const list = useMemo(() => {
+        if(search.length === 0) return data?.books || [];
+        return (data?.books || []).filter(b => b.title.includes(search));
+    }, [search, data]);
 
     useEffect(() => {
         refetch();
@@ -32,8 +38,9 @@ const CategoryBook: React.FC = () => {
                 <TextInput
                     placeholder="Nhập từ khóa"
                     style={{ flex: 1 }}
+                    value={search}
+                    onChange={e => setSearch(e.target.value)}
                 />
-                <Button bg={"#765C53"}>Tìm kiếm</Button>
             </Group>
             <Stack>
                 <Group justify="start" w={"100%"}>
@@ -48,7 +55,7 @@ const CategoryBook: React.FC = () => {
                 </Group>
                 <Grid columns={12} gutter={40}>
                     {
-                        (data?.books || []).map(b =>
+                        list.map(b =>
                             <Grid.Col span={4} key={b.id}>
                                 <BookItem
                                     title={b.title}

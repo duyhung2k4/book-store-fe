@@ -14,6 +14,8 @@ const OrderItem: React.FC<OrderItemProps> = (props) => {
 
     const { orders: data } = useContext<OrderContextType>(OrderContext);
 
+    console.log(data);
+
     const orders = useMemo(() => {
         return (data || []).filter(d => d.status === props.status);
     }, [data]);

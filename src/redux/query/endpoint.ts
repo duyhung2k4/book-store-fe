@@ -79,6 +79,16 @@ export const endPoint = {
             url: "book/get_book_by_id",
             method: "GET",
             headers: HEADER.defaultHeader(),
+        }),
+        getAll: () => ({
+            url: "book/get_books",
+            method: "GET",
+            headers: HEADER.defaultHeader(),
+        }),
+        search: () => ({
+            url: "book/search_books",
+            method: "GET",
+            headers: HEADER.defaultHeader(),
         })
     },
     review: {

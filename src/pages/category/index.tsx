@@ -3,10 +3,10 @@ import Book from "@/components/book";
 
 import { Grid, Stack, Text } from "@mantine/core";
 import { useGetCategoryQuery } from "@/redux/api/category";
-
-import classes from "./styles.module.css";
 import { useNavigate } from "react-router";
 import { ROUTER } from "@/constants/router";
+
+import classes from "./styles.module.css";
 
 
 const Category: React.FC = () => {

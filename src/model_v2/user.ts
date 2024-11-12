@@ -7,4 +7,5 @@ export type UserModelV2 = {
     phone_number: string
     address: string
     role_id: number
+    role_name: string
 }

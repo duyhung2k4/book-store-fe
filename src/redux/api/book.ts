@@ -24,6 +24,19 @@ export const bookApi = createApi({
                 }
             }),
         }),
+        getAllBook: builder.query<BookResponse, null>({
+            query: () => ({
+                ...endPoint.book.getAll(),
+            }),
+        }),
+        searchBook: builder.query<BookModelAllV2[], string>({
+            query: (payload) => ({
+                ...endPoint.book.search(),
+                params: {
+                    search_text: payload,
+                }
+            }),
+        }),
         
     })
 });
@@ -31,4 +44,6 @@ export const bookApi = createApi({
 export const {
     useGetBookByCategoryQuery,
     useGetBookByIdQuery,
+    useGetAllBookQuery,
+    useSearchBookQuery,
 } = bookApi;
