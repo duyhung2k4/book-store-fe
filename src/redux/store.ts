@@ -6,6 +6,7 @@ import { categoryApi } from "./api/category";
 import { bookApi } from "./api/book";
 import { reviewApi } from "./api/review";
 import { orderApi } from "./api/order";
+import { chatApi } from "./api/chat";
 
 
 
@@ -16,6 +17,7 @@ const middleware = [
     bookApi.middleware,
     reviewApi.middleware,
     orderApi.middleware,
+    chatApi.middleware,
 ]
 
 const store = configureStore({

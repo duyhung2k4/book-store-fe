@@ -1,11 +1,13 @@
+import authSlice from "./slice/authSlice";
+
 import { combineReducers } from "@reduxjs/toolkit";
 import { queryApi } from "./api/query";
 import { authApi } from "./api/auth";
-import authSlice from "./slice/authSlice";
 import { categoryApi } from "./api/category";
 import { bookApi } from "./api/book";
 import { reviewApi } from "./api/review";
 import { orderApi } from "./api/order";
+import { chatApi } from "./api/chat";
 
 
 
@@ -16,5 +18,6 @@ export const rootReducer = combineReducers({
     [bookApi.reducerPath]: bookApi.reducer,
     [reviewApi.reducerPath]: reviewApi.reducer,
     [orderApi.reducerPath]: orderApi.reducer,
+    [chatApi.reducerPath]: chatApi.reducer,
     authSlice: authSlice.reducer,
 })

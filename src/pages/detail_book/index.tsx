@@ -6,11 +6,11 @@ import { IconArrowLeft, IconShoppingCart } from "@tabler/icons-react";
 import { useNavigate, useParams } from "react-router";
 import { useGetBookByIdQuery } from "@/redux/api/book";
 import { useCreateReviewMutation, useGetReviewQuery } from "@/redux/api/review";
-
-import classes from "./styles.module.css";
 import { useAppSelector } from "@/redux/hook";
 import { addCart } from "@/utils/cart";
 import { ROUTER } from "@/constants/router";
+
+import classes from "./styles.module.css";
 
 
 
@@ -49,6 +49,10 @@ const DetailBook: React.FC = () => {
             rating: rating,
             comment: review,
         });
+
+        if("error" in result) {
+            return;
+        }
 
         setRating(0);
         setReview("");

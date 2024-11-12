@@ -37,26 +37,26 @@ const Login: React.FC = () => {
 
         console.log(result);
 
-        if("error" in result) return;
-        
+        if ("error" in result) return;
+
     }
 
 
 
     useEffect(() => {
-        if(accessToken) {
+        if (accessToken) {
             navigation(ROUTER.HOME.href);
         }
     }, [accessToken])
 
-    if(accessToken) {
+    if (accessToken) {
         return <></>
     }
 
     return (
         <Group className={classes.root}>
-            <Grid 
-                w={"100%"} 
+            <Grid
+                w={"100%"}
                 h={"100%"}
                 classNames={{
                     inner: classes.inner
@@ -88,13 +88,20 @@ const Login: React.FC = () => {
                             </Stack>
                         </form>
 
-                        <Button 
-                            loading={isLoading} 
-                            disabled={isLoading} 
+                        <Button
+                            loading={isLoading}
+                            disabled={isLoading}
                             w={"100%"}
                             type="submit"
                             form="login"
                         >Đăng nhập</Button>
+                        <Text w={"100%"} style={{ textAlign: "left" }}>
+                            Bạn chưa có tài khoản?&nbsp;
+                            <span
+                                className={classes.high_light}
+                                onClick={() => navigation(ROUTER.REGSITER.href)}
+                            >Đăng kí</span>
+                        </Text>
                     </Stack>
                 </Grid.Col>
             </Grid>

@@ -10,12 +10,7 @@ import {
     PageDetailBook,
     PageHome,
     PageLogin,
-    PageManagerBook,
-    PageManagerCategory,
     PageManagerOrder,
-    PageManagerPermisson,
-    PageManagerPublisher,
-    PageManagerUser,
     PageNotFound,
     PageOrder,
     PageRegister,
@@ -33,10 +28,10 @@ const AppRouter: React.FC = () => {
 
     return (
         <Routes>
-            <Route path={ROUTER.LOGIN.href} element={<PageLogin />} />
-            <Route path={ROUTER.REGSITER.href} element={<PageRegister />} />
 
             <Route element={<ProtectedLayout />}>
+                <Route path={ROUTER.LOGIN.href} element={<PageLogin />} />
+                <Route path={ROUTER.REGSITER.href} element={<PageRegister />} />
                 <Route element={<AppshellLayout />}>
                     <Route path={ROUTER.HOME.href} element={<PageHome />} />
                     <Route path={ROUTER.ORDER.href} element={<PageOrder />} />
@@ -46,17 +41,17 @@ const AppRouter: React.FC = () => {
                     <Route path={`${ROUTER.BOOK.href}/:id`} element={<PageDetailBook />} />
                     <Route path={ROUTER.CART.href} element={<PageCart />} />
 
-                    <Route path={ROUTER.MANAGER_BOOK.href} element={<PageManagerBook />} />
-                    <Route path={ROUTER.MANAGER_PERMISSION.href} element={<PageManagerPermisson />} />
-                    <Route path={ROUTER.MANAGER_USER.href} element={<PageManagerUser />} />
-                    <Route path={ROUTER.MANAGER_CATEGORY.href} element={<PageManagerCategory />} />
-                    <Route path={ROUTER.MANAGER_ORDER.href} element={<PageManagerOrder />} />
-                    <Route path={ROUTER.MANAGER_PUBLISHER.href} element={<PageManagerPublisher />} />
 
                     {
                         role === "admin" &&
                         <>
+                            <Route path={ROUTER.MANAGER_ORDER.href} element={<PageManagerOrder />} />
+                            {/* <Route path={ROUTER.MANAGER_PERMISSION.href} element={<PageManagerPermisson />} /> */}
                             {/* <Route path={ROUTER.DEPARTMENT.href} element={<PageDepartment />} />
+                            <Route path={ROUTER.MANAGER_USER.href} element={<PageManagerUser />} />
+                            <Route path={ROUTER.MANAGER_BOOK.href} element={<PageManagerBook />} />
+                            <Route path={ROUTER.MANAGER_CATEGORY.href} element={<PageManagerCategory />} />
+                            <Route path={ROUTER.MANAGER_PUBLISHER.href} element={<PageManagerPublisher />} />
                             <Route path={ROUTER.SCHEDULE.href} element={<PageSchedule />} />
                             <Route path={`${ROUTER.SCHEDULE.href}/:id`} element={<PageScheduleDetail />} />
                             <Route path={ROUTER.ROOM_CLIN.href} element={<PageRoomClin />} />

@@ -28,6 +28,8 @@ const Cart: React.FC = () => {
         if ("error" in result) return;
 
         localStorage.setItem(`${CART}-${profile.id}`, JSON.stringify({}));
+        getCarts();
+        setSum(0);
         setModal(false);
     }
 
@@ -49,6 +51,15 @@ const Cart: React.FC = () => {
     useEffect(() => {
         getCarts();
     }, [profile]);
+
+    if (carts.length === 0) {
+        return (
+            <Stack>
+                <Text className={classes.title}>Giỏ hàng</Text>
+                <Text w={"100%"} style={{ textAlign: "center" }}>Danh sách trống</Text>
+            </Stack>
+        )
+    }
 
 
 

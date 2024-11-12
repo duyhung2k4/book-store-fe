@@ -1,7 +1,11 @@
+import { endPoint } from "../query/endpoint";
 import { createApi } from "@reduxjs/toolkit/query/react";
 import { axiosBaseQuery } from "../query/baseQuery";
-import { endPoint } from "../query/endpoint";
 import { CreateOrderReq } from "@/dto/request/order";
+import { OrderModelV2 } from "@/model_v2/order";
+import { OrderItemModelV2 } from "@/model_v2/order_item";
+
+
 
 export const orderApi = createApi({
     reducerPath: "orderApi",
@@ -13,9 +17,49 @@ export const orderApi = createApi({
                 data: payload,
             }),
         }),
+        getAllOrder: builder.query<OrderModelV2[], null>({
+            query: () => ({
+                ...endPoint.order.getOrderByUserId(),
+            }),
+        }),
+        getOrderByUserId: builder.query<OrderModelV2[], null>({
+            query: () => ({
+                ...endPoint.order.getOrderByUserId(),
+            }),
+        }),
+        getOrderItems: builder.query<OrderItemModelV2[], number>({
+            query: (payload) => ({
+                ...endPoint.order.getOrderItems(),
+                params: {
+                    order_id: payload,
+                }
+            }),
+        }),
+        updateStatusOrder: builder.mutation<any, { status: string, order_id: number }>({
+            query: (payload) => ({
+                ...endPoint.order.updateOrder(),
+                params: {
+                    status: payload.status,
+                    order_id: payload.order_id,
+                },
+            }),
+        }),
+        deleteOrder: builder.mutation<any, number>({
+            query: (payload) => ({
+                ...endPoint.order.deleteOrder(),
+                params: {
+                    order_id: payload,
+                },
+            }),
+        }),
     })
 });
 
 export const {
-    useCreateOrderMutation
+    useGetAllOrderQuery,
+    useGetOrderByUserIdQuery,
+    useGetOrderItemsQuery,
+    useCreateOrderMutation,
+    useUpdateStatusOrderMutation,
+    useDeleteOrderMutation,
 } = orderApi;

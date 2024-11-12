@@ -32,6 +32,10 @@ const Comment: React.FC<CommentProps> = (props) => {
 
     const handleDeleteReview = async () => {
         const result = await deleteReview(props.id);
+        if("error" in result) {
+            setModal(false);
+            return;
+        }
         props.cbDelete && props.cbDelete();
     }
 

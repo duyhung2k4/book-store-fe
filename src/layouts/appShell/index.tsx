@@ -1,15 +1,14 @@
 import React, { Suspense, useMemo } from "react";
-import Cookies from "js-cookie";
 
 import { useNavigate, useOutlet } from "react-router";
 import { AppShell, Grid, Group, LoadingOverlay, Stack } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import { ObjectRouter, ROUTER } from "@/constants/router";
 import { useAppSelector } from "@/redux/hook";
-import { TOKEN_TYPE } from "@/model/variable";
 
 import classes from "./styles.module.css";
 import RoomChat from "@/components/room_chat";
+import ModalUser from "./modalUser";
 
 
 
@@ -30,21 +29,13 @@ const AppshellLayout: React.FC = () => {
             ROUTER.CATEGORY_BOOK,
             ROUTER.CART,
             ROUTER.ORDER,
-            ROUTER.MANAGER_ORDER,
-            ROUTER.MANAGER_PERMISSION,
         ];
-
-        // if (role === "admin") {
-        //     list.push(
-        //         ROUTER.DEPARTMENT,
-        //         ROUTER.ROOM_CLIN,
-        //         ROUTER.ROOM_SPEC,
-        //         ROUTER.ACCOUNT_DOCTOR,
-        //         ROUTER.SCHEDULE,
-        //         ROUTER.FIELD,
-        //         ROUTER.LOG_CHECK,
-        //     )
-        // }
+        
+        if (role === "admin") {
+            list.push(
+                ROUTER.MANAGER_ORDER,
+            )
+        }
 
         // if (role === "room-clin") {
         //     list.push(...[
@@ -67,13 +58,6 @@ const AppshellLayout: React.FC = () => {
     const navigation = useNavigate();
 
     const pathname = window.location.pathname;
-
-    const handleLogout = () => {
-        Cookies.remove(TOKEN_TYPE.ACCESS_TOKEN);
-        Cookies.remove(TOKEN_TYPE.REFRESH_TOKEN);
-
-        navigation(ROUTER.HOME.href);
-    }
 
 
 
@@ -115,43 +99,47 @@ const AppshellLayout: React.FC = () => {
                 </AppShell.Header> */}
 
                 <AppShell.Navbar p={0} style={{ backgroundColor: "#EEE5DA" }}>
-                    <Stack gap={8} pt={30}>
-                        {links.map((l, index) => {
-                            const active = pathname === ROUTER.HOME.href && l.href === ROUTER.HOME.href ? true : pathname.includes(l.href) && l.href !== ROUTER.HOME.href;
-                            const Icon = l.icon
-                            return (
-                                <Group
-                                    key={index}
-                                    gap={16}
-                                    align="center"
-                                    className={classes.link_root}
-                                    onClick={() => navigation(l.href)}
-                                >
-                                    <div
-                                        style={{
-                                            width: 4,
-                                            borderTopRightRadius: 100,
-                                            borderBottomRightRadius: 100,
-                                            height: "100%"
-                                        }}
-                                        className={`${classes.link} ${active && classes.active}`}
-                                    ></div>
+                    <Stack h={"100%"} justify="space-between">
+                        <Stack gap={8} pt={30}>
+                            {links.map((l, index) => {
+                                const active = pathname === ROUTER.HOME.href && l.href === ROUTER.HOME.href ? true : pathname.includes(l.href) && l.href !== ROUTER.HOME.href;
+                                const Icon = l.icon
+                                return (
                                     <Group
-                                        gap={8}
+                                        key={index}
+                                        gap={16}
                                         align="center"
-                                        w={280 - 16 - 5}
-                                        style={{
-                                            padding: "10px 8px",
-                                            borderRadius: 16,
-                                        }}
-                                        className={`${classes.link} ${active && classes.active}`}
+                                        className={classes.link_root}
+                                        onClick={() => navigation(l.href)}
                                     >
-                                        {Icon && <Icon />}
-                                        <span>{l.name}</span>
+                                        <div
+                                            style={{
+                                                width: 4,
+                                                borderTopRightRadius: 100,
+                                                borderBottomRightRadius: 100,
+                                                height: "100%"
+                                            }}
+                                            className={`${classes.link} ${active && classes.active}`}
+                                        ></div>
+                                        <Group
+                                            gap={8}
+                                            align="center"
+                                            w={280 - 16 - 5}
+                                            style={{
+                                                padding: "10px 8px",
+                                                borderRadius: 16,
+                                            }}
+                                            className={`${classes.link} ${active && classes.active}`}
+                                        >
+                                            {Icon && <Icon />}
+                                            <span>{l.name}</span>
+                                        </Group>
                                     </Group>
-                                </Group>
-                            )
-                        })}
+                                )
+                            })}
+                        </Stack>
+
+                        <ModalUser/>
                     </Stack>
                 </AppShell.Navbar>
 
@@ -171,9 +159,9 @@ const AppshellLayout: React.FC = () => {
                     >
                         <Grid w={"100%"}>
                             <Grid.Col span={8}>
-                                <Stack 
+                                <Stack
                                     style={{
-                                        height: `calc(100vh - ${16*2}px)`,
+                                        height: `calc(100vh - ${16 * 2}px)`,
                                         overflow: "hidden",
                                         overflowY: "scroll",
                                         paddingLeft: 8,
@@ -184,7 +172,7 @@ const AppshellLayout: React.FC = () => {
                                 </Stack>
                             </Grid.Col>
                             <Grid.Col span={4}>
-                                <RoomChat/>
+                                <RoomChat />
                             </Grid.Col>
                         </Grid>
                     </Group>

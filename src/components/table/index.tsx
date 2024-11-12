@@ -28,7 +28,7 @@ const TableCustom: React.FC<TableCustomProps> = (props) => {
         columns: props.columns,
         data: props.data,
         renderTopToolbarCustomActions: () => {
-            return props.action ? <>{props.action}</> : <></>
+            return props.action ? <>{props.action}</> : <div></div>
         },
         state: {
             isLoading: props.loading

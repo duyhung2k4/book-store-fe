@@ -127,6 +127,13 @@ const Regsiter: React.FC = () => {
                             type="submit"
                             form="login"
                         >Đăng kí</Button>
+                        <Text w={"100%"} style={{ textAlign: "left" }}>
+                            Bạn đã có tài khoản?&nbsp; 
+                            <span 
+                                className={classes.high_light}
+                                onClick={() => navigation(ROUTER.LOGIN.href)}
+                            >Đăng nhập</span>
+                        </Text>
                     </Stack>
                 </Grid.Col>
             </Grid>

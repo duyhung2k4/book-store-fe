@@ -27,7 +27,7 @@ const authSlice = createSlice({
         builder.addMatcher(authApi.endpoints.login.matchFulfilled, (state, { payload }) => {
             state.profile = payload?.user || {};
             
-            if (payload?.user.role_id === 1) {
+            if (payload?.user.role_id === 2) {
                 state.role = "admin"
             } else {
                 state.role = "user"
@@ -38,7 +38,7 @@ const authSlice = createSlice({
 
 
             if (payload?.access_token) {
-                Cookies.set(TOKEN_TYPE.ACCESS_TOKEN, payload.access_token, { expires: 1 });
+                Cookies.set(TOKEN_TYPE.ACCESS_TOKEN, payload.access_token, { expires: 1 / (24) });
             }
         }),
 

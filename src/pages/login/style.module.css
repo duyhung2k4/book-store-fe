@@ -34,3 +34,11 @@
     height: auto;
     object-fit: cover;
 }
+
+.high_light {
+    color: blue;
+}
+.high_light:hover {
+    cursor: pointer;
+    text-decoration: underline;
+}

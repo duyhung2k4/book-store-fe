@@ -103,6 +103,38 @@ export const endPoint = {
             url: "order/create_orders",
             method: "POST",
             headers: HEADER.protectedHeader(),
+        }),
+        getAllOrder: () => ({
+            url: "order/get_all_orders",
+            method: "GET",
+            headers: HEADER.protectedHeader(),
+        }),
+        getOrderByUserId: () => ({
+            url: "order/get_order_by_user_id",
+            method: "GET",
+            headers: HEADER.protectedHeader(),
+        }),
+        getOrderItems: () => ({
+            url: "order/get_order_items_by_order_id",
+            method: "GET",
+            headers: HEADER.protectedHeader(),
+        }),
+        updateOrder: () => ({
+            url: "order/update_order_status",
+            method: "PUT",
+            headers: HEADER.protectedHeader(),
+        }),
+        deleteOrder: () => ({
+            url: "order/delete_orders",
+            method: "DELETE",
+            headers: HEADER.protectedHeader(),
+        })
+    },
+    chat: {
+        chatBot: () => ({
+            url: "chatbot/chatbot",
+            method: "POST",
+            headers: HEADER.protectedHeader(),
         })
     }
 }

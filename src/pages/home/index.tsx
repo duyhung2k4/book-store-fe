@@ -17,7 +17,7 @@ const Home: React.FC = () => {
                 <Button bg={"#765C53"}>Tìm kiếm</Button>
             </Group>
 
-            <Stack mt={60}>
+            <Stack>
                 <Text className={classes.title}>Mới ra mắt</Text>
                 <Grid columns={12} gutter={40}>
                 </Grid>
