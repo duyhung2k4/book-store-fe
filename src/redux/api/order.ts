@@ -19,7 +19,7 @@ export const orderApi = createApi({
         }),
         getAllOrder: builder.query<OrderModelV2[], null>({
             query: () => ({
-                ...endPoint.order.getOrderByUserId(),
+                ...endPoint.order.getAllOrder(),
             }),
         }),
         getOrderByUserId: builder.query<OrderModelV2[], null>({
