@@ -26,3 +26,10 @@ export type FaceLoginRequest = {
 export type SaveProcessRequest = {
     profileId: number
 }
+
+export type UpdateUserRequest = {
+    username: string
+    password: string
+    address: string
+    phone_number: string
+}

@@ -3,7 +3,7 @@ import { axiosBaseQuery } from "../query/baseQuery";
 import { endPoint } from "../query/endpoint";
 import { QueryReturnType } from "@/dto/base";
 import { AuthResponse, RegisterResponse } from "@/dto/response/auth";
-import { LoginRequest, RegisterRequest } from "@/dto/request/auth";
+import { LoginRequest, RegisterRequest, UpdateUserRequest } from "@/dto/request/auth";
 import { UserModelV2 } from "@/model_v2/user";
 
 export const authApi = createApi({
@@ -24,10 +24,15 @@ export const authApi = createApi({
                 }
             }),
         }),
-
         register: builder.mutation<QueryReturnType<RegisterResponse>, RegisterRequest>({
             query: (payload) => ({
                 ...endPoint.auth.register(),
+                data: payload,
+            }),
+        }),
+        updateUser: builder.mutation<any, UpdateUserRequest>({
+            query: (payload) => ({
+                ...endPoint.auth.updateUser(),
                 data: payload,
             }),
         }),
@@ -38,4 +43,5 @@ export const {
     useGetUserByIdQuery,
     useLoginMutation,
     useRegisterMutation,
+    useUpdateUserMutation,
 } = authApi;

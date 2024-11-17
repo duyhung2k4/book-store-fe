@@ -3,13 +3,17 @@ import BookItem from "@/components/book_item";
 
 import { Grid, Group, Stack, Text, TextInput } from "@mantine/core";
 import { useGetAllBookQuery, useSearchBookQuery } from "@/redux/api/book";
+import { useNavigate } from "react-router";
 
 import classes from "./styles.module.css";
+import { ROUTER } from "@/constants/router";
 
 
 
 const Home: React.FC = () => {
     const [search, setSearch] = useState<string>("");
+
+    const navigation = useNavigate();
 
     const {
         data: dataAll,
@@ -65,7 +69,7 @@ const Home: React.FC = () => {
                                     title={d.title}
                                     price={d.price}
                                     image_url={d.image_url}
-                                    onClick={() => { }}
+                                    onClick={() => navigation(`${ROUTER.BOOK.href}/${d.id}`)}
                                 />
                             </Grid.Col>
                         )

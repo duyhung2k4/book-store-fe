@@ -53,6 +53,11 @@ export const endPoint = {
             url: "auth/get_user_by_id",
             method: "GET",
             headers: HEADER.defaultHeader(),
+        }),
+        updateUser: () => ({
+            url: "auth/update",
+            method: "PUT",
+            headers: HEADER.protectedHeader(),
         })
     },
     query: {
