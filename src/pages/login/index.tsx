@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import Cookies from "js-cookie";
 
 import { Button, Grid, Group, PasswordInput, Stack, Text, TextInput } from "@mantine/core";
@@ -8,6 +8,7 @@ import { ROUTER } from "@/constants/router";
 import { useLoginMutation } from "@/redux/api/auth";
 import { LoginRequest } from "@/dto/request/auth";
 import { useForm } from "@mantine/form";
+import { useNotification } from "@/hook/notification.hook";
 
 import bgGIF from "@/assets/GIF/bg-login.gif";
 import classes from "./style.module.css";
@@ -16,7 +17,9 @@ import classes from "./style.module.css";
 const Login: React.FC = () => {
     const navigation = useNavigate();
 
-    const [login, { isLoading }] = useLoginMutation();
+    const [login] = useLoginMutation();
+    const [load, setLoad] = useState<boolean>(false);
+    const noti = useNotification();
 
     const form = useForm<LoginRequest>({
         initialValues: { username: "", password: "" },
@@ -24,7 +27,7 @@ const Login: React.FC = () => {
             username: (value) => value.length === 0 ? "Điền tên đăng nhập" : null,
             password: (value) => value.length === 0 ? "Điền mật khẩu" : null,
         }
-    })
+    });
 
     const accessToken = useMemo(() => {
         return Cookies.get(TOKEN_TYPE.ACCESS_TOKEN);
@@ -33,12 +36,16 @@ const Login: React.FC = () => {
 
 
     const handleSubmit = async (values: LoginRequest) => {
+        setLoad(true);
         const result = await login(values);
+        setLoad(false);
 
-        console.log(result);
+        if (result.error !== undefined) {
+            noti.error("Sai tên đăng nhập hoặc mật khẩu");
+            return;
+        };
 
-        if ("error" in result) return;
-
+        navigation(ROUTER.HOME.href);
     }
 
 
@@ -96,8 +103,8 @@ const Login: React.FC = () => {
                         </form>
 
                         <Button
-                            loading={isLoading}
-                            disabled={isLoading}
+                            loading={load}
+                            disabled={load}
                             w={"100%"}
                             type="submit"
                             form="login"
