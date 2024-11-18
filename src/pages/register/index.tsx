@@ -11,12 +11,14 @@ import { useForm } from "@mantine/form";
 
 import bgGIF from "@/assets/GIF/bg-login.gif";
 import classes from "./style.module.css";
+import { useNotification } from "@/hook/notification.hook";
 
 
 const Regsiter: React.FC = () => {
     const navigation = useNavigate();
 
     const [login, { isLoading }] = useRegisterMutation();
+    const noti = useNotification();
 
     const form = useForm<RegisterRequest>({
         initialValues: {
@@ -43,7 +45,10 @@ const Regsiter: React.FC = () => {
     const handleSubmit = async (values: RegisterRequest) => {
         const result = await login(values);
 
-        if ("error" in result) return;
+        if ("error" in result) {
+            noti.error("Lỗi đăng kí");
+            return;
+        }
         navigation(ROUTER.LOGIN.href);
     }
 
