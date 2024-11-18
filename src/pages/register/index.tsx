@@ -34,7 +34,7 @@ const Regsiter: React.FC = () => {
             username: (value) => value.length === 0 ? "Điền tên đăng nhập" : null,
             password: (value) => value.length === 0 ? "Điền mật khẩu" : null,
             first_name: (value) => value.length === 0 ? "Thiếu tên" : null,
-            last_name: (value) => value.length === 0 ? "Thiếu họ" : null,
+            last_name: (value) => value.length === 0 ? "Thiếu họ, tên đệm" : null,
             email: (value) => {
                 if (value.length === 0) return "Điền email";
                 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
