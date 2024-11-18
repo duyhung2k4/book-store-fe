@@ -33,6 +33,19 @@ const Regsiter: React.FC = () => {
         validate: {
             username: (value) => value.length === 0 ? "Điền tên đăng nhập" : null,
             password: (value) => value.length === 0 ? "Điền mật khẩu" : null,
+            first_name: (value) => value.length === 0 ? "Thiếu tên" : null,
+            last_name: (value) => value.length === 0 ? "Thiếu họ" : null,
+            email: (value) => {
+                if (value.length === 0) return "Điền email";
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                return emailRegex.test(value) ? null : "Email không hợp lệ";
+            },
+            phone_number: (value) => {
+                if (value.length === 0) return "Điền số điện thoại";
+                const phoneRegex = /^(?:\+84|0)(?:\d{9}|\d{8})$/; // Định dạng cho số điện thoại Việt Nam
+                return phoneRegex.test(value) ? null : "Số điện thoại không hợp lệ";
+            },
+            address: (value) => value.length === 0 ? "Điền địa chỉ" : null,
         }
     })
 
