@@ -100,7 +100,7 @@ const Regsiter: React.FC = () => {
                 </Grid.Col>
 
                 <Grid.Col span={5} w={"100%"}>
-                    <Stack className={classes.box} gap={40}>
+                    <Stack className={classes.box} gap={20}>
                         <Stack gap={0} w={"100%"} align="center">
                             <Text style={{ fontWeight: 800, fontSize: 30, textAlign: "center" }}>Chào mừng tới Book Store</Text>
                             <Text style={{ fontWeight: 800, fontSize: 14 }}>Vui lòng nhập thông tin đăng kí</Text>
